@@ -3,8 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
-h1{
-    background: black;
+nav{
+    background-color: black;
     color: white;
-    padding: 8px;
+    padding: 8px 24px;
+    display: flex;
+    justify-content: space-between;
+}
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: None;
+    width: 80%;
+}
+.menu > li > a{
+    color: white;
+}
+section{
+    padding: 10%;
 }
