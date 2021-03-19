@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1st Flask App</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    <!-- Bootstrap5 CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 
 <body>
     <header>
-        <div class="container">
+        <div class="">
             <strong>
                 <nav>
                     <h1>My First Flask App</h1>
                     <ul class="menu">
                         <li><a href="{{ url_for('index') }}">Home</a></li>
-                        <li><a href="{{ url_for('predict') }}">Predict Page</a></li>
+                        <li><a href="{{ url_for('predict') }}">Predict Iris</a></li>
+                        <li><a href="{{ url_for('predictBoston') }}">Predict Boston</a></li>
                         <li><a href="{{ url_for('hello') }}">Hello world Page</a></li>
                         <li><a href="{{ url_for('double') }}">Double URL param</a></li>
                         <li><a href="{{ url_for('triple') }}">Triple URL param</a></li>

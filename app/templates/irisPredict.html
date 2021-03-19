@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+
+{% block content %}
+<section>
+    <h1>Iris Prediction Page</h1>
+
+    <p>Empty parameters in URL, you must specify "?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX"</p>
+
+    <h2>Prediction Result</h2>
+    {{json}}
+
+    <h1>With Post method</h1>
+    <form action="POST">
+        <label for="">Sepal_length</label>
+        <input type="number" required=true>
+        <label for="">Sepal_width</label>
+        <input type="number" required=true>
+        <label for="">Petal_length</label>
+        <input type="number" required=true>
+        <label for="">Petal_width</label>
+        <input type="number" required=true>
+        <input type="submit">
+
+    </form>
+</section>
+{% endblock %}

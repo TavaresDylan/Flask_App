@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+
+{% block content %}
+<section>
+    <h1>Multiply GET request by 2</h1>
+    <form action="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.input_nb.label }}<br>
+            {{ form.input_nb(size=32) }}
+        </p>
+        <p>
+            {{ form.submit(size=32) }}
+        </p>
+    </form>
+    <!--<form action="POST">
+        <label for="">Input number</label>
+        <input type="number">
+    </form>-->
+</section>
+{% endblock %}
