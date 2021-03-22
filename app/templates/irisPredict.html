@@ -4,21 +4,29 @@
 <section>
     <h1>Iris Prediction Page</h1>
 
-    <p>Empty parameters in URL, you must specify "?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX"</p>
+    {% if not json %}
+    <p class="alert alert-danger">Empty parameters in URL, you must specify "?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX"</p>
+    {% else %}
+    <p class="alert alert-success">You passed number {{number}} to predict iris species into URL and your result is {{result}}</p>
+    {% endif %}
 
     <h2>Prediction Result</h2>
     {{json}}
 
     <h1>With Post method</h1>
-    <form action="#" method="POST">
-        {{ form_iris.sl_input.label }}
-        {{ form_iris.sl_input }}
-        {{ form_iris.sw_input.label }}
-        {{ form_iris.sw_input }}
-        {{ form_iris.pl_input.label }}
-        {{ form_iris.pl_input }}
-        {{ form_iris.pw_input.label }}
-        {{ form_iris.pw_input }}
+    <form class="form-group" action="#" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.sl_input.label }}
+        {{ form.sl_input }}
+        {{ form.sw_input.label }}
+        {{ form.sw_input }}
+        {{ form.pl_input.label }}
+        {{ form.pl_input }}
+        {{ form.pw_input.label }}
+        {{ form.pw_input }}
+        {{ form.submit }}
     </form>
+    <p>Result = {{result}}</p>
+    <p>Pred = {{pred}}</p>
 </section>
 {% endblock %}

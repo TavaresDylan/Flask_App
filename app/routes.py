@@ -17,11 +17,17 @@ def index():
 # Définition de la route Predict Iris
 @app.route("/predict",methods=['GET','POST'])
 def predict():
-    form_iris = IrisForm()
-    if form_iris.validate_on_submit():
-        result = request.form_iris
+    form = IrisForm()
+    if form.validate_on_submit():
+        result = request.form
+        sepal_length = float(result["sl_input"])
+        sepal_width = float(result["sw_input"])
+        petal_length = float(result["pl_input"])
+        petal_width = float(result["pw_input"])
+        pred = Predict.predIris(sepal_length,sepal_width,petal_length,petal_width)
+        return render_template("irisPredict.html", result=result, form=form, pred=pred)
     elif not request.args.get('sepal_length'):
-        return render_template("irisPredict.html")
+        return render_template("irisPredict.html",form=form)
         #return "Empty parameters in URL, you must specify \"?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX\" to predict petal length"
     else:
         # Définition des variables contenant les arguments passés dans l'URL
@@ -37,7 +43,7 @@ def predict():
         }
         # Retourne un dictionnaire JSON
         #return jsonify(pred_json)
-        return render_template("irisPredict.html", json = pred_json)
+        return render_template("irisPredict.html", json = pred_json,form=form)
 
 # Définition de la route Flask Hello World !
 @app.route("/hello")
