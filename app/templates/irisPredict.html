@@ -10,17 +10,15 @@
     {{json}}
 
     <h1>With Post method</h1>
-    <form action="POST">
-        <label for="">Sepal_length</label>
-        <input type="number" required=true>
-        <label for="">Sepal_width</label>
-        <input type="number" required=true>
-        <label for="">Petal_length</label>
-        <input type="number" required=true>
-        <label for="">Petal_width</label>
-        <input type="number" required=true>
-        <input type="submit">
-
+    <form action="#" method="POST">
+        {{ form_iris.sl_input.label }}
+        {{ form_iris.sl_input }}
+        {{ form_iris.sw_input.label }}
+        {{ form_iris.sw_input }}
+        {{ form_iris.pl_input.label }}
+        {{ form_iris.pl_input }}
+        {{ form_iris.pw_input.label }}
+        {{ form_iris.pw_input }}
     </form>
 </section>
 {% endblock %}

@@ -2,8 +2,20 @@
 
 {% block content %}
 <section>
-    <h1>Multiply GET request by 2</h1>
-    <form action="POST">
+    <h1>Multiply request by 2</h1>
+    <h2>Method GET</h2>
+    {% if not json %}
+    <div class="alert alert-danger" role="alert">
+        Empty parameters in URL, you must specify 1 param into URL "?number=XXX"
+    </div>
+    {% endif %}
+    {% if json %}
+    <div class="alert alert-success" role="alert">
+        You passed number {{number}} to multiply by 2 into URL and your result is {{double}}
+    </div>
+    {% endif %}
+    <h2>Method POST</h2>
+    <form action="#" method="POST">
         {{ form.hidden_tag() }}
         <p>
             {{ form.input_nb.label }}<br>
@@ -13,9 +25,8 @@
             {{ form.submit(size=32) }}
         </p>
     </form>
-    <!--<form action="POST">
-        <label for="">Input number</label>
-        <input type="number">
-    </form>-->
+    {% if result %}
+    <p>Result = {{result}}</p>
+    {% endif %}
 </section>
 {% endblock %}

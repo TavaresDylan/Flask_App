@@ -5,7 +5,7 @@ from flask import request # Librairie permettant de faire passer des paramètres
 from main import Predict # Appel de la class permettant de faire la prédiction Iris (Régression Linéaire)
 import requests
 
-from form import DoubleForm
+from form import DoubleForm, IrisForm
 
 # Définition de la route Home
 @app.route('/')
@@ -15,9 +15,12 @@ def index():
     return render_template("home.html", title="Home")
 
 # Définition de la route Predict Iris
-@app.route("/predict",methods=['GET'])
+@app.route("/predict",methods=['GET','POST'])
 def predict():
-    if not request.args.get('sepal_length'):
+    form_iris = IrisForm()
+    if form_iris.validate_on_submit():
+        result = request.form_iris
+    elif not request.args.get('sepal_length'):
         return render_template("irisPredict.html")
         #return "Empty parameters in URL, you must specify \"?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX\" to predict petal length"
     else:
@@ -47,18 +50,21 @@ def hello():
 
 @app.route("/double",methods=['GET','POST'])
 def double():
-    if not request.args.get('number'):
-        form = DoubleForm()
+    form = DoubleForm()
+    if form.validate_on_submit():
+        result = request.form
+        result = int(result['input_nb']) *2
+        return render_template("double.html",form=form, result=result)
+    elif not request.args.get('number'):
         return render_template("double.html",form=form)
-        #return "Empty parameters in URL, you must specify \"?number=x\" to multiply number x by 2"
     else:
         data_x2 = int(request.args.get('number')) * 2
         double = {
             "success": True,
             "data": data_x2
         }
-        #return jsonify(double)
-        return render_template("double.html")
+        json = jsonify(double)
+        return render_template("double.html",form=form, json=json, double=data_x2, number=int(request.args.get('number')))
 
 @app.route("/triple",methods=['GET'])
 def triple():
