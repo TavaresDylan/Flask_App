@@ -1,6 +1,7 @@
 {% extends "home.html" %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
+
 <section>
     <h1>Iris Prediction Page</h1>
 
@@ -14,19 +15,14 @@
     {{json}}
 
     <h1>With Post method</h1>
-    <form class="form-group" action="#" method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.sl_input.label }}
-        {{ form.sl_input }}
-        {{ form.sw_input.label }}
-        {{ form.sw_input }}
-        {{ form.pl_input.label }}
-        {{ form.pl_input }}
-        {{ form.pw_input.label }}
-        {{ form.pw_input }}
-        {{ form.submit }}
+    <form class="form-group border border-dark p-3 rounded" action="#" method="POST">
+        {{ wtf.quick_form(form)}}
     </form>
-    <p>Result = {{result}}</p>
-    <p>Pred = {{pred}}</p>
+    {% if result %}
+    <p class="alert alert-success">Result = {{result}}</p>
+    {% endif %}
+    {% if pred %}
+        <p class="alert alert-success">Pred = {{pred}}</p>
+    {% endif %}
 </section>
 {% endblock %}
