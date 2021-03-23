@@ -5,7 +5,7 @@ from flask import request # Librairie permettant de faire passer des paramètres
 from main import Predict # Appel de la class permettant de faire la prédiction Iris (Régression Linéaire)
 import requests
 
-from form import DoubleForm, IrisForm
+from form import DoubleForm, IrisForm, BostonForm
 
 # Définition de la route Home
 @app.route('/')
@@ -17,6 +17,7 @@ def index():
 # Définition de la route Predict Iris
 @app.route("/predict",methods=['GET','POST'])
 def predict():
+    ##POST METHOD
     form = IrisForm()
     if form.validate_on_submit():
         result = request.form
@@ -25,11 +26,12 @@ def predict():
         petal_length = float(result["pl_input"])
         petal_width = float(result["pw_input"])
         pred = Predict.predIris(sepal_length,sepal_width,petal_length,petal_width)
-        return render_template("irisPredict.html", result=result, form=form, pred=pred)
+        return render_template("irisPredict.html", result=result, form=form, pred=pred, title="Iris Classification")
     elif not request.args.get('sepal_length'):
-        return render_template("irisPredict.html",form=form)
+        return render_template("irisPredict.html",form=form, title="Iris Classification")
         #return "Empty parameters in URL, you must specify \"?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX\" to predict petal length"
     else:
+        ## GET METHOD
         # Définition des variables contenant les arguments passés dans l'URL
         sepal_length = float(request.args.get("sepal_length"))
         sepal_width = float(request.args.get("sepal_width"))
@@ -43,7 +45,7 @@ def predict():
         }
         # Retourne un dictionnaire JSON
         #return jsonify(pred_json)
-        return render_template("irisPredict.html", json = pred_json,form=form)
+        return render_template("irisPredict.html", json = pred_json,form=form, title="Iris Classification")
 
 # Définition de la route Flask Hello World !
 @app.route("/hello")
@@ -91,8 +93,10 @@ def users():
 
 @app.route("/predict-boston", methods=["POST","GET"])
 def predictBoston():
+    title_boston = "Boston Prediction"
+    form = BostonForm()
     if not request.args.get('zn'):
-        return render_template("bostonPredict.html")
+        return render_template("bostonPredict.html", title=title_boston, form=form)
     else:
         # Définition des variables contenant les arguments passés dans l'URL
         zn = float(request.args.get("zn"))

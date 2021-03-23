@@ -22,6 +22,10 @@
         </tr>
     </table>
     {% endif %}
+    <form action="POST">
+        <p>Select how much features you want as an input</p>
+        {{ wtf.quick_form(form) }}
+    </form>
     <h2>Prediction Result for 3 feature model</h2>
     {% if json %}
     {{json[2]}}
