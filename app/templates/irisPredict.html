@@ -4,17 +4,16 @@
 
 <section>
     <h1>Iris Prediction Page</h1>
-
+    <h2>Method GET</h2>
     {% if not json %}
     <p class="alert alert-danger">Empty parameters in URL, you must specify "?sepal_length=XXX&sepal_width=XXX&petal_length=XXX&petal_width=XXX"</p>
     {% else %}
     <p class="alert alert-success">You passed number {{number}} to predict iris species into URL and your result is {{result}}</p>
     {% endif %}
 
-    <h2>Prediction Result</h2>
     {{json}}
 
-    <h1>With Post method</h1>
+    <h2>Method POST</h2>
     <form class="form-group border border-dark p-3 rounded" action="#" method="POST">
         {{ wtf.quick_form(form)}}
     </form>
