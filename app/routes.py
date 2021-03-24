@@ -4,6 +4,10 @@ from flask import render_template # Librairie permettant de rendre une vue html
 from flask import request # Librairie permettant de faire passer des paramètres dans l'url avec la méthode GET
 from main import Predict # Appel de la class permettant de faire la prédiction Iris (Régression Linéaire)
 import requests
+import os
+import config
+from PIL import Image
+
 
 from form import DoubleForm, IrisForm, BostonForm
 
@@ -114,3 +118,16 @@ def predictBoston():
 def axiosPage():
     axios_title = "Axios"
     return render_template("axios.html", title=axios_title)
+
+# Route MNIST
+@app.route("/mnist", methods=["POST","GET"])
+def mnistPage():
+    mnist_title = "Mnist"
+    # Conditions pour l'upload de l'image
+    if request.method == "POST":
+        if request.files:
+            image = request.files["image"]
+            image.save(os.path.join(app.config["IMAGE_UPLOADS"], image.filename))
+            img_load = Image.open(app.config["IMAGE_UPLOADS"]+image.filename)
+            return render_template("mnist.html", title=mnist_title, image=img_load, img_name=image.filename, img_path=app.config["IMAGE_UPLOADS"]+image.filename)
+    return render_template("mnist.html", title=mnist_title)

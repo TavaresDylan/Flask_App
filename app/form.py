@@ -17,3 +17,6 @@ class IrisForm(FlaskForm):
 
 class BostonForm(FlaskForm):
     slc_nb_features = SelectField('nb_features',choices=["Model 1 feature","Model 2 features","Model 3 features"])
+
+class MnistForm(FlaskForm):
+    inp = "in"
