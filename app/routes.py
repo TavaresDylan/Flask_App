@@ -109,3 +109,8 @@ def predictBoston():
             "data": pred
         }
         return render_template("bostonPredict.html", title="Boston Prediction", json = pred)
+
+@app.route("/axios", methods=["POST","GET"])
+def axiosPage():
+    axios_title = "Axios"
+    return render_template("axios.html", title=axios_title)

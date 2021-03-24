@@ -36,7 +36,7 @@ section{
     border: 2px solid black;
     padding: 12px;
 }
-footer{
+/*footer{
     width: 100vw;
     height: 42px;
     position: absolute;
@@ -45,7 +45,7 @@ footer{
     margin: 0;
     background: black;
     color: white;
-}
+}*/
 .dropdown-menu > li > a{
     color: black;
     text-decoration: none;

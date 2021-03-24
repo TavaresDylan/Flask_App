@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block content %}
+<section>
+    <h2>Contact</h2>
+    <p>Axios est une librairie Javascript <a href="https://github.com/axios/axios">Github Axios</a></p>
+    <p>Elle permet de gérer des requetes HTTP en Ajax sous le système de promesses avec des objets Javascript.</p>
+    <form action="" method="GET">
+        <input class="btn btn-block btn-success mb-4" id="btn" type="button" value="Afficher les contacts" onclick="updateContact()">
+    </form>
+    <ul class="border border-dark rounded" id="list"></ul>
+</section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../static/js/app.js"></script>
+{% endblock %}
